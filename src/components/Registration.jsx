@@ -1,22 +1,32 @@
 import React from 'react'
-
+import {useForm} from 'react-hook-form'
+import { Link } from 'react-router-dom'
 function Registration() 
 {
+  let{register,handleSubmit,formState:{errors}}=useForm()
+
+  function handleformSubmit(obj)
+  {
+    
+  }
+
   return (
   
-        <div className="registration-container">
-      <form className="registration-form" >
+        <div className="registration-container card w-50 mx-auto m-5">
+      <form className="registration-form card-body"  onSubmit={handleSubmit(handleformSubmit)}>
         <h2>Registration Form</h2>
-        <div className="form-group">
+        <div className="form-group ">
           <label htmlFor="firstName">First Name</label>
           <input
             type="text"
             className="form-control"
-            id="firstName"
-            name="firstName"
-           
+          
+           {...register('firstname',{required:true})}
             
           />
+          {
+                errors.firstname?.type==='required'&& <p className='lead text-danger'> enter first name </p>
+            }
         </div>
         <div className="form-group">
           <label htmlFor="lastName">Last Name</label>
@@ -25,10 +35,15 @@ function Registration()
             className="form-control"
             id="lastName"
             name="lastName"
-         
-           
+            {...register('lastname',{required:true})}
             
-          />
+            
+            
+            
+            />
+            {
+                  errors.lastname?.type==='required'&& <p className='lead text-danger'> enter last name </p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="email">Email address</label>
@@ -37,10 +52,13 @@ function Registration()
             className="form-control"
             id="email"
             name="email"
-           
+            {...register('email',{required:true})}
            
             
           />
+             {
+                  errors.email?.type==='required'&& <p className='lead text-danger'> enter email </p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="phoneNumber">Phone Number</label>
@@ -49,10 +67,14 @@ function Registration()
             className="form-control"
             id="phoneNumber"
             name="phoneNumber"
+            {...register('pno',{required:true})}
         
            
             
           />
+             {
+                  errors.pno?.type==='required'&& <p className='lead text-danger'> enter phone number</p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="address">Address</label>
@@ -61,10 +83,13 @@ function Registration()
             className="form-control"
             id="address"
             name="address"
-            
+            {...register('address',{required:true})}
            
             
           />
+             {
+                  errors.address?.type==='required'&& <p className='lead text-danger'> enter address </p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="city">City</label>
@@ -74,45 +99,12 @@ function Registration()
             id="city"
             name="city"
             
-           
+            {...register('city',{required:true})}
             
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="state">State</label>
-          <input
-            type="text"
-            className="form-control"
-            id="state"
-            name="state"
-            
-           
-            
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="zipCode">ZIP Code</label>
-          <input
-            type="text"
-            className="form-control"
-            id="zipCode"
-            name="zipCode"
-        
-           
-            
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="country">Country</label>
-          <input
-            type="text"
-            className="form-control"
-            id="country"
-            name="country"
-            
-           
-            
-          />
+             {
+                  errors.city?.type==='required'&& <p className='lead text-danger'> enter city</p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -121,9 +113,12 @@ function Registration()
             className="form-control"
             id="username"
             name="username"
-            
+            {...register('username',{required:true})}
             
           />
+           {
+                  errors.username?.type==='required'&& <p className='lead text-danger'> enter username</p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
@@ -132,10 +127,13 @@ function Registration()
             className="form-control"
             id="password"
             name="password"
-          
+            {...register('password',{required:true})}
            
             
           />
+           {
+                  errors.password?.type==='required'&& <p className='lead text-danger'> enter password</p>
+              }
         </div>
         <div className="form-group">
           <label htmlFor="confirmPassword">Confirm Password</label>
@@ -143,28 +141,13 @@ function Registration()
             type="password"
             className="form-control"
             id="confirmPassword"
-            name="confirmPassword"
-         
-           
-            
+            name="confirmPassword"            
           />
-        </div>
-        <div className="form-group form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="termsAccepted"
-            name="termsAccepted"
-           
-           
-          />
-          <label className="form-check-label" htmlFor="termsAccepted">
-            I accept the terms and conditions
-          </label>
         </div>
         <button type="submit" className="btn btn-primary">
           Register
         </button>
+        <h3>alreadey have an account?</h3><Link to='/login'>LOGIN</Link>
       </form>
     </div>
   )
